@@ -31,7 +31,7 @@ const problemSchema = new mongoose.Schema({
         {
             language: {
                 type: String,
-                enum: [   'CPP', 'JAVA', 'PYTHON', ]
+                enum: [   'CPP', 'JAVA', 'PYTHON', 'JAVASCRIPT' ]
             },
             startSnippet : {
                 type: String,
