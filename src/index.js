@@ -5,6 +5,7 @@ const { PORT } = require('./config/server.config');
 const apiRouter = require('./routes');
 const errorHandler = require('./utils/errorHandler');
 const connectToDB = require('./config/db.config');
+const cors = require('cors'); // <-- import cors
 
 
 const app = express();
@@ -12,7 +13,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-
+app.use(cors({
+    origin: 'http://localhost:5173', // Vite dev server URL
+    credentials: true, // if you need cookies/auth
+}));
 
 // If any request comes and route starts with /api, we map it to apiRouter
 app.use('/api', apiRouter);

@@ -12,8 +12,6 @@
 - nodemon :: node --watch -- index.js
 - avoid dotenv :: process.loadEnvFile() via process.env.X
 
-
-
 <!-- create problem -->
 <!-- {
     "title" : "Sample problem 3",
@@ -39,3 +37,62 @@
     ]
 
 }  -->
+
+AWS CONFIG
+cd Downloads
+cd aws
+ssh -i ec2key.pem ubuntu@[65.0.125.129=>ipofec2]
+
+sudo apt update -y
+
+sudo apt install nodejs -y
+sudo apt install npm -y
+sudo npm install -g pm2 ==> to use pm2
+
+git clone https://github.com/gouravmarch20/leetcode-evalutor.git
+
+Ls —> cd go inside flow
+
+    1. npm install
+
+    2 . Vim .env
+    replace env of was
+    3. Env add in aws ==> security port ip4 , v6
+
+npm run dev
+
+— attach elastic ip address
+
+Docker in evaluator ==> ubuntu —> digital ocena article
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo apt install docker-ce
+sudo systemctl status docker
+sudo usermod -aG docker ${USER}
+ubuntu@ip-172-31-7-17:~/leetcode-evalutor$ su - ${USER} ==> password of ec2
+sudo systemctl restart docker
+
+<!-- s2 :: redis server -->
+
+sudo systemctl status redis-server ==> check
+
+<!-- s3 :: submission server  -->
+
+pm2 start src/index.js
+pm2 logs index
+
+<!-- to take latest pull form git repo -->
+
+git reset --hard
+git pull origin main
+npm install
+pm2 restart index
+
+<!-- frontend  -->
+
+pm2 serve dist 3000 --name leet-code-fe ==> force at 3000 port , securtity group mai add
+npm run build ==> make build
+
+pm2 serve dist 3000 --name leet-code-fe --spa ==> ==> serve build+++ dynamic route
