@@ -98,9 +98,15 @@ sudo systemctl restart docker
 
 
 
-<!--  -->
-sudo ./svc.sh
+<!--  github action runner ==> linux ==> in aws server paste all steps to link-->
 
-<!-- to give permission -->
+<!--  -->
+
+ 
+<!-- to give permission in action.runner to run runner agent in mac-->
+sudo ./svc.sh install  ==> new shell file
+
  ~/actions-runner$ sudo ./svc.sh install
  ~/actions-runner$ sudo ./svc.sh start
+
+ <!-- get _work in action-runner folder -->

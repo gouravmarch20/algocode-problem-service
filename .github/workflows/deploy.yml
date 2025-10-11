@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,10 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint & Build (optional)
-        run: |
-          echo "Skipping build for now"
-
       - name: Restart PM2 Service
         run: |
+          cd ~/leetcode-problem-service
+          git pull origin main
+          npm ci
           pm2 restart leetcode-problem-service || pm2 start src/index.js --name leetcode-problem-service
