@@ -1,0 +1,29 @@
+name: Leetcode Problem Service CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint & Build (optional)
+        run: |
+          echo "Skipping build for now"
+
+      - name: Restart PM2 Service
+        run: |
+          pm2 restart leetcode-problem-service || pm2 start src/index.js --name leetcode-problem-service
