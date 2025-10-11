@@ -25,6 +25,9 @@ app.use('/api', apiRouter);
 app.get('/ping', (req, res) => {
     return res.json({message: 'Problem Service is alive'});
 });
+app.get('/ci_ping', (req, res) => {
+    return res.json({message: 'Problem ci is alive'});
+});
 
 // last middleware if any error comes
 app.use(errorHandler);
