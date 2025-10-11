@@ -23,7 +23,7 @@ app.use('/api', apiRouter);
 
 
 app.get('/ping', (req, res) => {
-    return res.json({message: 'Problem Service is alive'});
+    return res.json({message: 'Problem Service is alive__0'});
 });
 app.get('/ci_ping', (req, res) => {
     return res.json({message: 'Problem ci is alive'});
