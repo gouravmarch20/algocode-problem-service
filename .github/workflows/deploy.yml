@@ -18,12 +18,25 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Restart PM2 Service
+      - name: Deploy to server & restart PM2
         run: |
+          # Go to the deployment directory on your server
           cd ~/leetcode-problem-service
-          git pull origin main
+
+          # Make sure you are on main and pull latest code
+          git fetch origin main
+          git reset --hard origin/main
+
+          # Install dependencies
           npm ci
-          pm2 restart leetcode-problem-service || pm2 start src/index.js --name leetcode-problem-service
+
+          # Restart or start PM2 process
+          pm2 describe leetcode-problem-service > /dev/null 2>&1
+          if [ $? -eq 0 ]; then
+            pm2 reload leetcode-problem-service
+          else
+            pm2 start src/index.js --name leetcode-problem-service
+          fi
+
+          # Save PM2 process list to startup
+          pm2 save
