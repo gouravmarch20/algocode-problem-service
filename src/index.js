@@ -6,7 +6,7 @@ const apiRouter = require("./routes");
 const errorHandler = require("./utils/errorHandler");
 const connectToDB = require("./config/db.config");
 const cors = require("cors"); // <-- import cors
-const { FE_URL  } = require('./config/server.config');
+const { FE_URL } = require("./config/server.config");
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.get("/ci_ping", (req, res) => {
 // last middleware if any error comes
 app.use(errorHandler);
 
-app.listen(PORT, async () => {
+app.listen(PORT, "0.0.0.0", async () => {
   console.log(`Server started at PORT: ${PORT}`);
   await connectToDB();
   console.log("Successfully connected to db");
