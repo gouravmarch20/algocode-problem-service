@@ -64,8 +64,44 @@ pm2 start src/index.js
 pm2 logs index
 
 <!-- s2 :: redis server -->
+ sudo apt install redis-server -y
+ sudo systemctl enable redis-server
+ sudo systemctl  start redis
 
-sudo systemctl status redis-server ==> check
+ 
+ sudo systemctl status redis-server ==> check
+
+ sudo vim /etc/redis/redis.conf
+
+ redis-cli -h 3.7.89.251 -p 6379 ==> to testrunning reids or not
+
+
+  sudo systemctl restart redis
+
+#
+# bind 192.168.1.100 10.0.0.1     # listens on two specific IPv4 addresses
+# bind 127.0.0.1 ::1              # listens on loopback IPv4 and IPv6
+# bind * -::*                     # like the default, all available interfaces
+#
+# ~~~ WARNING ~~~ If the computer running Redis is directly exposed to the
+# internet, binding to all the interfaces is dangerous and will expose the
+# instance to everybody on the internet. So by default we uncomment the
+# following bind directive, that will force Redis to listen only on the
+# IPv4 and IPv6 (if available) loopback interface addresses (this means Redis
+# will only be able to accept client connections from the same host that it is
+# running on).
+#
+# IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
+# COMMENT OUT THE FOLLOWING LINE.
+#
+# You will also need to set a password unless you explicitly disable protected
+# mode.
+
+bind 127.0.0.1 ==> bind 0.0.0.0 -::1
+
+
+protected-mode yes==>
+protected-mode no   
 
 <!-- to take latest pull form git repo -->
 

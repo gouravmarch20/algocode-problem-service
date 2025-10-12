@@ -2,3 +2,5 @@ PORT=8000
 ATLAS_DB_URL="mongodb+srv://gouravmarch20:<PASSWORD>.pcxkc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 NODE_ENV="development"
 LOG_DB_URL="mongodb+srv://gouravmarch20:<PASSWORD>@cluster0.pcxkc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+JWT_SECRET
+FE_URL
